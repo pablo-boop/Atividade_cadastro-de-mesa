@@ -119,12 +119,6 @@ function editTable() {
 function deleteTable(id) {
     tableList.deleteTable(id)
     renderTable()
-
-    if(tableList.tables.length == 0) {
-        document.getElementById("order-list").add("hidden")
-    } else {
-        document.getElementById("order-list").remove("hidden")
-    }
 }
 
 function emptyInputs() {
