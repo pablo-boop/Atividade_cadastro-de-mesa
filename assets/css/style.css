@@ -28,9 +28,48 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border: none;
+    border-radius: 0.3rem;
+    margin: 1rem;
     width: 50%;
-    height: 30vh;
+    height: 75vh;
     overflow-y: auto;
+    -webkit-box-shadow: -11px 11px 42px 0px rgba(0,0,0,0.34);
+    -moz-box-shadow: -11px 11px 42px 0px rgba(0,0,0,0.34);
+    box-shadow: -11px 11px 42px 0px rgba(0,0,0,0.34);
+}
+
+.cards {
+    width: 50%;
+    height: auto;
+    border: 1px solid #e6e6e6;
+    border-radius: 0.3rem;
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+button {
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+    width: 25%;
+}
+
+input {
+    background-color: #e6e6e6;
+    border: none;
+    border-radius: 0.2rem;
+    padding-left: 0.5rem;
+    width: 25vw;
+    height: 5vh;
+}
+
+.error {
+    color: #f00;
+}
+
+.success {
+    color: #00ff00;
 }
 
 .hidden {

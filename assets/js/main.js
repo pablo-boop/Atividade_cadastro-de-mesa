@@ -18,10 +18,12 @@ class TableList {
 
     add(param) {
         if(emptyInputs()) {
-            alert("Preencha todos os campos")
+            sendMSG("Preencha todos os campos", "error")
         } else {
             this.tables.push(param)
             cleanInputs()
+            sendMSG("Mesa cadastrada com sucesso", "success")
+            renderTable()
         }
     }
 
@@ -40,7 +42,7 @@ class TableList {
     }
 
     deleteTable(param) {
-        return this.tables.filter((table) => table.id != param);
+        this.tables = this.tables.filter(table => table.id != param)
     }
 }
 
@@ -53,13 +55,15 @@ function createTable() {
 
     const newTable = new Table(client, table, description);
     tableList.add(newTable)
-    renderTable()
 }
 
 function renderTable() {
     const tableElement = document.getElementById("order-list");
     tableElement.classList.remove("hidden")
-    tableElement.innerHTML = "";
+    tableElement.innerHTML = 
+    `
+    <h2>Lista de Mesas - ${tableList.tables.length}</h2>
+    `
 
     let content = "";
 
@@ -78,7 +82,7 @@ function renderTable() {
             </div>
         `
     });
-    tableElement.innerHTML = content;
+    tableElement.innerHTML += content;
 }
 
 let aux = null;
@@ -114,13 +118,12 @@ function editTable() {
 
 function deleteTable(id) {
     tableList.deleteTable(id)
-
     renderTable()
 
-    document.getElementById("order-list").classList.add("hidden")
-
-    if(teamList.teams.length == 0) {
-        document.getElementById("order-list").classList.add("hidden")
+    if(tableList.tables.length == 0) {
+        document.getElementById("order-list").add("hidden")
+    } else {
+        document.getElementById("order-list").remove("hidden")
     }
 }
 
@@ -142,4 +145,20 @@ function cleanInputs() {
     document.getElementById("client").value = "";
     document.getElementById("table").value = "";
     document.getElementById("description").value = "";
+}
+
+function sendMSG(msg,type){  
+    // Como type vai ser a class, será ou error ou success
+    const msgDiv = document.getElementById("msg");
+    msgDiv.innerHTML = "";
+
+    const msgP = `
+        <p class="${type}">${msg}</p>
+    `;
+
+    msgDiv.innerHTML += msgP;
+
+    setTimeout(function(){
+        msgDiv.innerHTML = "";
+    }, 3000);
 }
