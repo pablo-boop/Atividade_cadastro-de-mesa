@@ -112,6 +112,18 @@ function editTable() {
     cleanInputs()
 }
 
+function deleteTable(id) {
+    tableList.deleteTable(id)
+
+    renderTable()
+
+    document.getElementById("order-list").classList.add("hidden")
+
+    if(teamList.teams.length == 0) {
+        document.getElementById("order-list").classList.add("hidden")
+    }
+}
+
 function emptyInputs() {
     const client = document.getElementById("client").value;
     const table = document.getElementById("table").value;
